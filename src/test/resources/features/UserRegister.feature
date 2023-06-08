@@ -1,6 +1,5 @@
 Feature: Registro de usuario
 
-  @smoke
   Scenario: Registro exitoso con email y validaciones de campos.
     Given Inicio app Ionix
     When Ingreso nombre de usuario
@@ -20,12 +19,12 @@ Feature: Registro de usuario
       | nuevo123 | automat | Automati1*        | pruebas@mail.com |
     Then Debo de visualizar la validacion de password "Password does not have the format"
     When Ingreso repetir clave
-      | Usuario  | Clave      | ConfirmacionClave | Email            |
-      | nuevo123 | Automati1* |                   | pruebas@mail.com |
+      | Usuario  | Clave      | ConfirmacionClave | Email            | Validacion |
+      | nuevo123 | Automati1* |                   | pruebas@mail.com | No         |
     Then Debo de visualizar la validacion de repetir password "Repeat password is required"
     When Ingreso repetir clave
-      | Usuario  | Clave      | ConfirmacionClave | Email            |
-      | nuevo123 | Automati1* | repautomat        | pruebas@mail.com |
+      | Usuario  | Clave      | ConfirmacionClave | Email            | Validacion |
+      | nuevo123 | Automati1* | repautomat        | pruebas@mail.com | No         |
     Then Debo de visualizar la validacion de repetir password "Password does not have the format"
     When Ingreso email
       | Usuario  | Clave      | ConfirmacionClave | Email   |
@@ -40,6 +39,7 @@ Feature: Registro de usuario
       | Usuario | Clave      | ConfirmacionClave | Email           |
       | Automa  | Automati1* | Automati1*        | automa@mail.com |
     Then Debo de visualizar el mensaje de bienvenida "Welcome to ionix"
+
 
   Scenario: Registro exitoso sin email y validaciones de campos.
     Given Inicio app Ionix
@@ -60,12 +60,12 @@ Feature: Registro de usuario
       | nuevo123 | automat | Automati1*        | pruebas@mail.com |
     Then Debo de visualizar la validacion de password "Password does not have the format"
     When Ingreso repetir clave
-      | Usuario  | Clave      | ConfirmacionClave | Email            |
-      | nuevo123 | Automati1* |                   | pruebas@mail.com |
+      | Usuario  | Clave      | ConfirmacionClave | Email            | Validacion |
+      | nuevo123 | Automati1* |                   | pruebas@mail.com | No         |
     Then Debo de visualizar la validacion de repetir password "Repeat password is required"
     When Ingreso repetir clave
-      | Usuario  | Clave      | ConfirmacionClave | Email            |
-      | nuevo123 | Automati1* | repautomat        | pruebas@mail.com |
+      | Usuario  | Clave      | ConfirmacionClave | Email            | Validacion |
+      | nuevo123 | Automati1* | repautomat        | pruebas@mail.com | No         |
     Then Debo de visualizar la validacion de repetir password "Password does not have the format"
     When Ingreso email
       | Usuario  | Clave      | ConfirmacionClave | Email   |
@@ -84,3 +84,11 @@ Feature: Registro de usuario
     When Ingreso nombre de usuario
       | Usuario    | Clave      | ConfirmacionClave | Email          |
       | Usuario123 | Automati1* | Automati1*        | autom@mail.com |
+
+  @smoke
+  Scenario: Registro usuario con passwords diferentes
+    Given Inicio app Ionix
+    When Ingreso repetir clave
+      | Usuario    | Clave      | ConfirmacionClave | Email          | Validacion |
+      | Usuario123 | Automato1* | Automati2**       | autom@mail.com | Si         |
+

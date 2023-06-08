@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.SendKeys;
 import net.thucydides.core.annotations.Step;
 import starter.questions.GeneralValidationsQuestion;
+import starter.questions.ValidatePasswordsQuestion;
 import starter.ui.UserRegisterUI;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;

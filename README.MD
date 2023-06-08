@@ -1,10 +1,16 @@
 
-##**README SERENITY WEB TRAINING**
+##**README **
 
 ##**Run tests with gradle:**
 
 ```
 ./gradlew clean test
+```
+
+##**Run tests with gradle and specific tags:**
+
+```
+./gradlew clean test -DincludeTags='smoke'
 ```
 
 To run tests in Firefox:

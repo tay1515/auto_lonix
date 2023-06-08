@@ -48,8 +48,6 @@ public class UserRegisterDefinition {
         }
 
         theActorInTheSpotlight().attemptsTo(ValidateFieldUserNameInteraction.ValidateFieldUserName(credenciales.row(1).get(0), credenciales.row(1).get(1), credenciales.row(1).get(2), credenciales.row(1).get(3)));
-        //theActorInTheSpotlight().attemptsTo(Login.withAdminUser(credenciales.row(1).get(0), credenciales.row(1).get(1)));
-
     }
 
     @Then("Debo de visualizar la validacion de username {string}")
@@ -83,7 +81,7 @@ public class UserRegisterDefinition {
 
     @When("Ingreso repetir clave")
     public void ingresoRepetirClave(DataTable credenciales) {
-        theActorInTheSpotlight().attemptsTo(ValidateFieldRepeatPasswordInteraction.ValidateFieldRepeatPassword(credenciales.row(1).get(0), credenciales.row(1).get(1), credenciales.row(1).get(2), credenciales.row(1).get(3)));
+        theActorInTheSpotlight().attemptsTo(ValidateFieldRepeatPasswordInteraction.ValidateFieldRepeatPassword(credenciales.row(1).get(0), credenciales.row(1).get(1), credenciales.row(1).get(2), credenciales.row(1).get(3), credenciales.row(1).get(4).toLowerCase()));
     }
 
     @Then("Debo de visualizar la validacion de repetir password {string}")
