@@ -1,37 +1,26 @@
 
 ##**README **
 
-##**Run tests with gradle:**
+##**Run tests with Gradle:**
 
 ```
 ./gradlew clean test
 ```
 
-##**Run tests with gradle and specific tags:**
+##**Run tests with Gradle and specific tags:**
 
 ```
 ./gradlew clean test -DincludeTags='smoke'
 ```
 
-To run tests in Firefox:
-
-```
-./gradlew clean test -Dwebdriver.driver=firefox
-```
-
-In windows:
-```
-gradlew clean test
-```
-
 ##**Run tests with Maven:**
 
 ```
-mvn clean verify -Ddriver=firefox
+mvn clean verify
 ```
-or try this:
+##**Run tests with Maven and specific tags:**
 
 ```
-mvn clean verify -Dwebdriver.driver=firefox
+mvn clean verify -DincludeTags='smoke'
 ```
 
