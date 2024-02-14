@@ -17,13 +17,13 @@ steps:
     codeCoverageToolOption: Cobertura
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  condition: or(canceled(), failed())
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**/*.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
     preserveTimestamp: true
-  condition: succeededOrFailed()
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact: drop'
@@ -31,4 +31,4 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-  condition: succeededOrFailed()
+  condition: or(canceled(), failed())
