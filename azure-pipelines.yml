@@ -13,7 +13,7 @@ steps:
 - task: Maven@3
   displayName: 'auto_lonix/pom.xml'
   inputs:
-    mavenPomFile: 'auto_lonix/pom.xml'
+    mavenPomFile: 'pom.xml'
     codeCoverageToolOption: Cobertura
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
