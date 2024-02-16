@@ -10,10 +10,15 @@ pool:
   name: Default
   
 steps:
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '*.zip'
+    destinationFolder: '$(Build.SourcesDirectory)'
+    cleanDestinationFolder: false
 - task: Maven@3
   displayName: 'auto_lonix/pom.xml'
   inputs:
-    mavenPomFile: 'auto_lonix/pom.xml'
+    mavenPomFile: '$(System.DefaultWorkingDirectory)/{zip file name}/pipelines-java-function-master/pom.xml'
     codeCoverageToolOption: Cobertura
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
