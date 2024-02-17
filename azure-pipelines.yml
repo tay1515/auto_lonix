@@ -10,25 +10,15 @@ pool:
   name: Default
   
 steps:
-- task: Maven@3
-  displayName: 'auto_lonix/pom.xml'
+- task: Gradle@2
   inputs:
-    mavenPomFile: 'pom.xml'
-    codeCoverageToolOption: Cobertura
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-  condition: or(canceled(), failed())
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**/*.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
-    preserveTimestamp: true
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish artifact: drop'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  condition: or(canceled(), failed())
+    gradleWrapperFile: '$(Build.Repository.LocalPath)/gradlew'
+    workingDirectory: '$(Build.Repository.LocalPath)'
+    tasks: 'clean build test assembleRelease assembleDebug assembleAndroidTest'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    gradleOptions: '-Xmx3072m'
+    sonarQubeRunAnalysis: false
+  
